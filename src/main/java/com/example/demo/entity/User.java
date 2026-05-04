@@ -1,6 +1,9 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
@@ -10,14 +13,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Name cannot be empty")
     private String name;
+
+    @Email(message = "Enter valid email")
+    @NotBlank(message = "Email cannot be empty")
     private String email;
 
-    public User() {}
+    // Hide password from API response
+    @JsonIgnore
+    private String password;
 
-    public User(String name, String email) {
-        this.name = name;
-        this.email = email;
+    public User() {
     }
 
     public Long getId() {
@@ -38,5 +45,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    // Getter & Setter for password
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
