@@ -30,12 +30,14 @@ function RiskForm() {
       localStorage.setItem("risks", JSON.stringify(updated));
     } else {
       // CREATE
-      const newRisk = {
-        id: Date.now(),
-        name,
-        riskLevel: level
-      };
-      localStorage.setItem("risks", JSON.stringify([...stored, newRisk]));
+     
+const newRisk = {
+  id: stored.length + 1,
+  name,
+  riskLevel: level
+};
+
+localStorage.setItem("risks", JSON.stringify([...stored, newRisk]));
     }
 
     navigate("/list");

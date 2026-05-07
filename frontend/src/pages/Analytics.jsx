@@ -37,23 +37,62 @@ const barData = [
   const COLORS = ["#ff4d4f", "#faad14", "#52c41a"];
 
   return (
-    <div className="container">
-      <h2>Analytics</h2>
+  <div
+    style={{
+      padding: "30px",
+      background: "#f5f7fa",
+      minHeight: "100vh"
+    }}
+  >
+    <h2
+      style={{
+        color: "#1B4F8A",
+        marginBottom: "30px",
+        textAlign: "center"
+      }}
+    >
+      Analytics Dashboard
+    </h2>
 
-      {/* BAR */}
-      <div className="card">
-        <h3>Bar Chart</h3>
+    {/* TOP ROW */}
+    <div
+      style={{
+        display: "flex",
+        gap: "20px",
+        flexWrap: "wrap",
+        justifyContent: "center"
+      }}
+    >
+      {/* BAR CHART */}
+      <div
+        style={{
+          background: "white",
+          padding: "20px",
+          borderRadius: "10px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+        }}
+      >
+        <h3 style={{ textAlign: "center" }}>Risk Levels</h3>
+
         <BarChart width={400} height={300} data={barData}>
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="value" fill="#1b4f8a68" />
+          <Bar dataKey="value" fill="#1B4F8A" />
         </BarChart>
       </div>
 
-      {/* LINE */}
-      <div className="card">
-        <h3>Line Chart</h3>
+      {/* LINE CHART */}
+      <div
+        style={{
+          background: "white",
+          padding: "20px",
+          borderRadius: "10px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+        }}
+      >
+        <h3 style={{ textAlign: "center" }}>Monthly Trends</h3>
+
         <LineChart width={400} height={300} data={lineData}>
           <XAxis dataKey="month" />
           <YAxis />
@@ -61,10 +100,26 @@ const barData = [
           <Line dataKey="value" stroke="#1B4F8A" />
         </LineChart>
       </div>
+    </div>
 
-      {/* PIE FIXED ✅ */}
-      <div className="card">
-        <h3>Pie Chart</h3>
+    {/* PIE CHART BELOW */}
+    <div
+      style={{
+        marginTop: "30px",
+        display: "flex",
+        justifyContent: "center"
+      }}
+    >
+      <div
+        style={{
+          background: "white",
+          padding: "20px",
+          borderRadius: "10px",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)"
+        }}
+      >
+        <h3 style={{ textAlign: "center" }}>Risk Distribution</h3>
+
         <PieChart width={400} height={300}>
           <Pie
             data={pieData}
@@ -73,7 +128,7 @@ const barData = [
             cx="50%"
             cy="50%"
             outerRadius={100}
-            label   // 👈 important
+            label
           >
             {pieData.map((entry, index) => (
               <Cell key={index} fill={COLORS[index]} />
@@ -85,7 +140,8 @@ const barData = [
         </PieChart>
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default Analytics;

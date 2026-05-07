@@ -12,8 +12,8 @@ function Login() {
       setMessage("Login Successful ✅");
 
       setTimeout(() => {
-        localStorage.setItem("token", "dummy-jwt");
-        navigate("/");
+        localStorage.setItem("isLoggedIn", "true");
+            navigate("/dashboard");
       }, 1000);
     } else {
       setMessage("Invalid credentials ❌");
