@@ -43,12 +43,15 @@ function DetailPage() {
     let response = "";
 
     if (risk.riskLevel === "High") {
-      response = "🔴 High Risk: Immediate action required!";
-    } else if (risk.riskLevel === "Medium") {
-      response = "🟠 Medium Risk: Monitor closely.";
-    } else {
-      response = "🟢 Low Risk: No immediate action needed.";
-    }
+  response =
+    "🔴 AI Suggested Mitigation: Use firewall monitoring, multi-factor authentication, and continuous security auditing.";
+} else if (risk.riskLevel === "Medium") {
+  response =
+    "🟠 AI Suggested Mitigation: Monitor system logs regularly and apply periodic security updates.";
+} else {
+  response =
+    "🟢 AI Suggested Mitigation: Maintain current safeguards and perform routine monitoring.";
+}
 
     setAiResponse(response);
     setAiLoading(false);
@@ -143,8 +146,29 @@ function DetailPage() {
         Ask AI
       </button>
 
-      {aiLoading && <p>Loading...</p>}
-      {aiResponse && <p>{aiResponse}</p>}
+      {aiLoading && (
+  <p style={{ marginTop: "10px" }}>
+    Loading AI analysis...
+  </p>
+)}
+
+{aiResponse && (
+  <div
+    style={{
+      marginTop: "15px",
+      padding: "15px",
+      background: "#eef4ff",
+      borderRadius: "8px",
+      borderLeft: "5px solid #1B4F8A"
+    }}
+  >
+    <h4 style={{ color: "#1B4F8A" }}>
+      AI Insights
+    </h4>
+
+    <p>{aiResponse}</p>
+  </div>
+)}
     </div>
   </div>
 );

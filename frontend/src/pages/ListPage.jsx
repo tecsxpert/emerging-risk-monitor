@@ -12,7 +12,7 @@ function ListPage() {
   const navigate = useNavigate();
   const [params, setParams] = useSearchParams();
 
-  const pageSize = 2;
+  const pageSize = 5;
 
   // 🔹 Load data from localStorage
   useEffect(() => {
@@ -76,8 +76,21 @@ function ListPage() {
   };
 
   const exportCSV = () => {
-    alert("CSV Downloaded (dummy)");
-  };
+  const csv = data.map(item =>
+    `${item.id},${item.name},${item.riskLevel}`
+  ).join("\n");
+
+  const blob = new Blob([`ID,Name,Risk Level\n${csv}`], {
+    type: "text/csv"
+  });
+
+  const url = window.URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "risks.csv";
+  a.click();
+};
 
   const startStream = () => {
     setStreamData("Generating...");
